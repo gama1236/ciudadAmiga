@@ -9,7 +9,7 @@ import { RegisterPageComponent } from './componentes/register-page/register-page
 import { LoginPageComponent } from './componentes/login-page/login-page.component';
 import { PrivadoPageComponent } from './componentes/privado-page/privado-page.component';
 import { BotFoundPageComponent } from './componentes/bot-found-page/bot-found-page.component';
-
+import {AuthService} from './servicios/auth.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +24,7 @@ import { BotFoundPageComponent } from './componentes/bot-found-page/bot-found-pa
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
