@@ -10,6 +10,7 @@ import { LoginPageComponent } from './componentes/login-page/login-page.componen
 import { PrivadoPageComponent } from './componentes/privado-page/privado-page.component';
 import { BotFoundPageComponent } from './componentes/bot-found-page/bot-found-page.component';
 import {AuthService} from './servicios/auth.service';
+
 @NgModule({
   declarations: [
     AppComponent,

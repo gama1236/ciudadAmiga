@@ -1,40 +1,45 @@
 import { Injectable } from '@angular/core';
 import {AngularFireAuth} from 'angularfire2/auth'
-import *  as firebase from 'firebase/app';
-import 'rxjs/add/map';
+import * as firebase from 'firebase/app';
+import 'rxjs/add/operator/map';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
+ 
+  export class AuthService {
 
-export class AuthService {
-
-  constructor(
-    public afAuth: AngularFireAuth
-  ) { }
-
-  registerUser(email: string, pass: string){
-
-    return new Promise((resolve, reject)=>{
-      this.afAuth.auth.createUserWithEmailAndPassword(email,pass)
-      .then( userData => resolve(userData),
-      err => reject(err));
-    })
+    constructor(
+      public afAuth: AngularFireAuth
+    ) { }
+  
+    registerUser(email: string, pass: string){
+  
+      return new Promise((resolve, reject)=>{
+        this.afAuth.auth.createUserWithEmailAndPassword(email,pass)
+        .then( userData => resolve(userData),
+        err => reject(err));
+      })
+    }
+    loginUser(email: string, pass: string){
+  
+      return new Promise((resolve, reject)=>{
+        this.afAuth.auth.signInWithEmailAndPassword(email,pass)
+        .then( userData => resolve(userData),
+        err => reject(err));
+      })
+    }
+  
+    getAuth(){
+      return this.afAuth.authState.map (auth => auth);
+    }
+  
+    
+  
+    logout (){
+      return this.afAuth.auth.signOut();
+    }
   }
-  loginUser(email: string, pass: string){
-
-    return new Promise((resolve, reject)=>{
-      this.afAuth.auth.signInWithEmailAndPassword(email,pass)
-      .then( userData => resolve(userData),
-      err => reject(err));
-    })
-  }
-
-  getAuth(){
-    return this.afAuth.authState.map (auth => auth);
-  }
-
+  
   
 
-  logout (){
-    return this.afAuth.auth.signOut();
-  }
-}
